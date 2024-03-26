@@ -2,12 +2,7 @@ import "./App.css";
 import TodoAll from "./components/TodoAll";
 
 function App() {
-
-  return (
-    <>
-      <TodoAll />
-    </>
-  );
+  return <TodoAll />;
 }
 
 export default App;

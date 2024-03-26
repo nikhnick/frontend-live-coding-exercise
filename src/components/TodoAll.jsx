@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 function TodoAll() {
-  const [questions] = useState([
+  const questions = [
     "Can you code in Ruby?",
     "Can you code in JavaScript?",
     "Can you code in Swift?",
     "Can you code in Java?",
     "Can you code in C#?",
-  ]);
+  ];
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [optionSelection, setOptionSelection] = useState([]);
@@ -58,7 +58,6 @@ function TodoAll() {
               name={i + "answerGroup"}
               onChange={(e) => handleRadio(e, true, i)}
               value="true"
-              key={i + "yes"}
             />{" "}
             Yes
             <input
@@ -66,7 +65,6 @@ function TodoAll() {
               name={i + "answerGroup"}
               onChange={(e) => handleRadio(e, false, i)}
               value="false"
-              key={i + "no"}
             />{" "}
             No
           </div>

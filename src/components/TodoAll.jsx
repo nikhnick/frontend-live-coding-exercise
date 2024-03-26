@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function TodoAll() {
   const questions = [
@@ -28,17 +28,22 @@ function TodoAll() {
       (100 * optionSelection.filter((a) => a == true).length) /
       questions.length;
 
-    if (average == null) {
+    if (score == null) {
       localStorage.setItem("Score", currentScore);
       setAverage(currentScore);
     } else {
-      score = Math.round(
-        Number((100 * (currentScore + Number(average))) / (c * 100))
+      let scoreCalc = Math.round(
+        Number((100 * (currentScore + Number(score))) / (c * 100))
       );
-      setAverage(score);
-      localStorage.setItem("Score", currentScore + Number(average));
+      setAverage(scoreCalc);
+      localStorage.setItem("Score", currentScore + Number(score));
+      localStorage.setItem("Average", scoreCalc);
     }
   };
+
+  const handleReset = () => {
+    window.parent.location = window.parent.location.href;
+  }
 
   const handleRadio = (e, flag, indx) => {
     setIsSubmitted(false);
@@ -46,6 +51,13 @@ function TodoAll() {
     getOptions[indx] = flag;
     setOptionSelection([...getOptions]);
   };
+
+  useEffect(()=>{
+    const lastAverage = localStorage.getItem("Average")
+    if(lastAverage !== null){
+      setAverage(lastAverage)
+    }
+  },[])
 
   return (
     <>
@@ -76,6 +88,12 @@ function TodoAll() {
             style={{ backgroundColor: "gray", color: "#fff" }}
           >
             SUBMIT
+          </button> {' '}
+          <button
+            onClick={handleReset}
+            style={{ backgroundColor: "gray", color: "#fff" }}
+          >
+            RESET
           </button>
         </div>
       </div>

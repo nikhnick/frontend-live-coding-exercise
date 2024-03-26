@@ -11,7 +11,7 @@ function TodoAll() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [optionSelection, setOptionSelection] = useState([]);
-  const [average, setAverage] = useState(0);
+  const [average, setAverage] = useState(localStorage.getItem("Score"));
 
   const handleSubmit = (e) => {
     e.preventDefault();
